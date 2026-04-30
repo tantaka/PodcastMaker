@@ -1,15 +1,12 @@
-import json
 import os
 from datetime import datetime
 from pathlib import Path
 
-from google.oauth2 import service_account
+from google.oauth2.credentials import Credentials
+from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 import yaml
-
-
-SCOPES = ["https://www.googleapis.com/auth/drive.file"]
 
 
 class DriveUploader:
@@ -18,10 +15,14 @@ class DriveUploader:
             config = yaml.safe_load(f)
         self.folder_name = config["drive"]["folder_name"]
 
-        service_account_info = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"])
-        creds = service_account.Credentials.from_service_account_info(
-            service_account_info, scopes=SCOPES
+        creds = Credentials(
+            token=None,
+            refresh_token=os.environ["GOOGLE_OAUTH_REFRESH_TOKEN"],
+            token_uri="https://oauth2.googleapis.com/token",
+            client_id=os.environ["GOOGLE_OAUTH_CLIENT_ID"],
+            client_secret=os.environ["GOOGLE_OAUTH_CLIENT_SECRET"],
         )
+        creds.refresh(Request())
         self.service = build("drive", "v3", credentials=creds)
         self._root_folder_id = None
 
@@ -35,13 +36,9 @@ class DriveUploader:
         if files:
             return files[0]["id"]
 
-        metadata = {
-            "name": name,
-            "mimeType": "application/vnd.google-apps.folder",
-        }
+        metadata = {"name": name, "mimeType": "application/vnd.google-apps.folder"}
         if parent_id:
             metadata["parents"] = [parent_id]
-
         folder = self.service.files().create(body=metadata, fields="id").execute()
         return folder["id"]
 
@@ -57,10 +54,7 @@ class DriveUploader:
 
         filename = f"{topic['id']}_{date_str}.wav"
         media = MediaFileUpload(str(file_path), mimetype="audio/wav", resumable=True)
-        file_metadata = {
-            "name": filename,
-            "parents": [date_folder_id],
-        }
+        file_metadata = {"name": filename, "parents": [date_folder_id]}
         uploaded = self.service.files().create(
             body=file_metadata,
             media_body=media,
