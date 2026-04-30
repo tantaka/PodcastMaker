@@ -9,13 +9,11 @@ from src.drive_uploader import DriveUploader
 
 
 def main():
-    required_env = ["GEMINI_API_KEY", "GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REFRESH_TOKEN"]
+    required_env = ["GOOGLE_API_KEY", "GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REFRESH_TOKEN"]
     missing = [e for e in required_env if not os.environ.get(e)]
     if missing:
         print(f"環境変数が未設定です: {', '.join(missing)}")
         sys.exit(1)
-
-    os.environ.setdefault("GOOGLE_API_KEY", os.environ["GEMINI_API_KEY"])
 
     topic_manager = TopicManager()
     researcher = Researcher()
