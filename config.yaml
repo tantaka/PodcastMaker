@@ -1,7 +1,7 @@
 podcast:
   episodes_per_day: 1
-  min_duration_minutes: 15
-  max_duration_minutes: 20
+  min_duration_minutes: 5
+  max_duration_minutes: 5
   language: ja
 
 speakers:
