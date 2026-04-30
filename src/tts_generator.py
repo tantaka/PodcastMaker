@@ -1,10 +1,10 @@
 import wave
-import struct
 import os
 import yaml
 from pathlib import Path
 from google import genai
 from google.genai import types
+from src.utils import gemini_with_retry
 
 
 class TTSGenerator:
@@ -26,10 +26,9 @@ class TTSGenerator:
 
 {script}"""
 
-        response = self.client.models.generate_content(
-            model=self.model,
-            contents=prompt,
-            config=types.GenerateContentConfig(
+        response = gemini_with_retry(
+            self.client, self.model, prompt,
+            types.GenerateContentConfig(
                 response_modalities=["AUDIO"],
                 speech_config=types.SpeechConfig(
                     multi_speaker_voice_config=types.MultiSpeakerVoiceConfig(

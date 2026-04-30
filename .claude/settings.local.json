@@ -4,7 +4,8 @@
       "WebSearch",
       "WebFetch(domain:ai.google.dev)",
       "PowerShell(pip *)",
-      "PowerShell(git *)"
+      "PowerShell(git *)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

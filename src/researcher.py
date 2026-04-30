@@ -3,6 +3,7 @@ import requests
 import yaml
 from google import genai
 from google.genai import types
+from src.utils import gemini_with_retry
 
 
 WIKIPEDIA_API = "https://ja.wikipedia.org/w/api.php"
@@ -76,12 +77,8 @@ class Researcher:
 
 情報は正確に、深く、多角的にまとめてください。"""
 
-        response = self.client.models.generate_content(
-            model=self.model,
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                temperature=0.3,
-                max_output_tokens=3000,
-            ),
+        response = gemini_with_retry(
+            self.client, self.model, prompt,
+            types.GenerateContentConfig(temperature=0.3, max_output_tokens=3000),
         )
         return response.text

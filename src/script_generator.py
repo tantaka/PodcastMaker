@@ -1,6 +1,7 @@
 import yaml
 from google import genai
 from google.genai import types
+from src.utils import gemini_with_retry
 
 
 class ScriptGenerator:
@@ -46,12 +47,8 @@ class ScriptGenerator:
 
 必ず{min_chars}文字以上の台本を作成してください。台本のみを出力し、説明文は不要です。"""
 
-        response = self.client.models.generate_content(
-            model=self.model,
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                temperature=0.7,
-                max_output_tokens=8192,
-            ),
+        response = gemini_with_retry(
+            self.client, self.model, prompt,
+            types.GenerateContentConfig(temperature=0.7, max_output_tokens=8192),
         )
         return response.text
