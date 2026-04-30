@@ -1,0 +1,79 @@
+# Podcastのトピック一覧
+# title: Podcastのタイトル（日本語）
+# category: カテゴリ
+# keywords: リサーチ用キーワード
+topics:
+  - id: ai_llm
+    title: 大規模言語モデル（LLM）の最新動向と社会への影響
+    category: テクノロジー
+    keywords: [LLM, 大規模言語モデル, GPT, Gemini, Claude, 生成AI]
+
+  - id: quantum_computing
+    title: 量子コンピューティングの実用化と未来
+    category: テクノロジー
+    keywords: [量子コンピュータ, 量子コンピューティング, 量子優位性]
+
+  - id: climate_change
+    title: 気候変動対策と脱炭素社会への道
+    category: 環境
+    keywords: [気候変動, 脱炭素, カーボンニュートラル, 再生可能エネルギー]
+
+  - id: space_exploration
+    title: 宇宙探査の最前線と民間宇宙産業の台頭
+    category: 科学
+    keywords: [宇宙探査, SpaceX, NASA, 月面開発, 火星探査]
+
+  - id: biotech_gene_editing
+    title: ゲノム編集技術がもたらす医療革命
+    category: 科学
+    keywords: [ゲノム編集, CRISPR, 遺伝子治療, バイオテクノロジー]
+
+  - id: global_economy
+    title: 世界経済の構造変化とデジタル化の加速
+    category: 経済
+    keywords: [世界経済, デジタル経済, フィンテック, 経済格差]
+
+  - id: cybersecurity
+    title: サイバーセキュリティの脅威と企業・国家の対策
+    category: テクノロジー
+    keywords: [サイバーセキュリティ, ランサムウェア, ゼロデイ攻撃, データ保護]
+
+  - id: mental_health
+    title: 現代社会におけるメンタルヘルスの課題と解決策
+    category: 健康
+    keywords: [メンタルヘルス, うつ病, 精神医療, マインドフルネス]
+
+  - id: renewable_energy
+    title: 再生可能エネルギーの技術革新と電力システムの変革
+    category: 環境
+    keywords: [太陽光発電, 風力発電, 蓄電池, エネルギー転換]
+
+  - id: future_of_work
+    title: AIと自動化が変える未来の働き方
+    category: 社会
+    keywords: [未来の仕事, AI自動化, リモートワーク, ジョブシフト]
+
+  - id: blockchain_web3
+    title: ブロックチェーンとWeb3が描く分散型社会の可能性
+    category: テクノロジー
+    keywords: [ブロックチェーン, Web3, 暗号資産, NFT, 分散型]
+
+  - id: food_future
+    title: 食の未来——代替タンパクと持続可能な農業
+    category: 社会
+    keywords: [代替肉, 培養肉, フードテック, 持続可能農業]
+
+  - id: aging_society
+    title: 超高齢社会日本が直面する課題とテクノロジーの活用
+    category: 社会
+    keywords: [高齢化社会, 介護ロボット, 医療AI, 少子化]
+
+  - id: autonomous_vehicles
+    title: 自動運転技術の現在地と普及への課題
+    category: テクノロジー
+    keywords: [自動運転, 自動運転車, EV, モビリティ]
+
+  - id: education_ai
+    title: AI時代の教育変革——個別最適化学習の可能性
+    category: 教育
+    keywords: [教育AI, EdTech, 個別最適化, プログラミング教育]

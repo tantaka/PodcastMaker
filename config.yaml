@@ -1,0 +1,20 @@
+podcast:
+  episodes_per_day: 10
+  min_duration_minutes: 15
+  max_duration_minutes: 20
+  language: ja
+
+speakers:
+  male:
+    name: 田中
+    voice: Kore
+  female:
+    name: 佐藤
+    voice: Aoede
+
+gemini:
+  research_model: gemini-3.1-flash-lite-preview
+  tts_model: gemini-3.1-flash-tts-preview
+
+drive:
+  folder_name: PodcastMaker
