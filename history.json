@@ -1,3 +1,11 @@
 {
-  "completed": []
+  "completed": [
+    {
+      "topic_id": "quantum_computing",
+      "title": "量子コンピューティングの実用化と未来",
+      "date": "2026-05-01",
+      "drive_url": "https://drive.google.com/file/d/1-1SyaVUVD17N_TEIVePGS_q-HblFad2c/view?usp=drivesdk",
+      "filename": "quantum_computing.wav"
+    }
+  ]
 }
