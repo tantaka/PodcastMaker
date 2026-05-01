@@ -8,7 +8,7 @@ from google.genai import types
 from src.utils import gemini_with_retry
 
 # 1セグメントあたりの最大文字数（約2〜3分相当）
-SEGMENT_MAX_CHARS = 800
+SEGMENT_MAX_CHARS = 2000
 
 
 class TTSGenerator:

@@ -16,19 +16,21 @@ class ScriptGenerator:
         self.client = genai.Client()
 
     def generate(self, topic: dict, research: str) -> str:
-        # 日本語の話速: 約350文字/分。15-20分 = 5,250〜7,000文字
-        min_chars = self.min_min * 350
-        max_chars = self.max_min * 350
+        # 日本語の話速: 約350文字/分
+        target_chars = self.max_min * 350
 
         prompt = f"""あなたはプロのPodcast台本ライターです。
-以下のリサーチ情報をもとに、{self.min_min}〜{self.max_min}分（{min_chars}〜{max_chars}文字）の
-深いPodcast台本を日本語で作成してください。
+以下のリサーチ情報をもとに、ちょうど{self.max_min}分（{target_chars}文字以内）のPodcast台本を日本語で作成してください。
 
 【トピック】{topic['title']}
 【カテゴリ】{topic['category']}
 
 【リサーチ情報】
 {research}
+
+【厳守事項】
+- 合計文字数は必ず{target_chars}文字以内に収めること
+- 文字数を超えた場合は内容を削ること（絶対に超過しないこと）
 
 【台本のルール】
 - 話者は2名：{self.male_name}（男性、論理的・分析的な視点）と{self.female_name}（女性、共感的・実践的な視点）
@@ -38,14 +40,13 @@ class ScriptGenerator:
 - 二人が議論・深掘りし合う対話形式にする
 - リスナーが考えるための問いかけを含める
 
-【台本構成】
-1. 掴みのイントロ（1〜2分）：リスナーの興味を引く導入
-2. 背景・歴史的文脈（3〜4分）：なぜ今このトピックが重要か
-3. 核心的な分析・詳細解説（6〜8分）：深い掘り下げ、多角的な視点
-4. 影響・今後の展望（3〜4分）：社会・産業・個人への影響
-5. まとめとリスナーへの問いかけ（1〜2分）：考えるヒントを残す
+【台本構成（{self.max_min}分以内に収めること）】
+1. イントロ（30秒）：リスナーの興味を引く導入
+2. 背景・解説（2分）：トピックの概要と重要性
+3. 深掘り・考察（1分30秒）：多角的な視点
+4. まとめ（1分）：要点と問いかけ
 
-必ず{min_chars}文字以上の台本を作成してください。台本のみを出力し、説明文は不要です。"""
+台本のみを出力し、説明文・文字数カウント等は一切不要です。"""
 
         response = gemini_with_retry(
             self.client, self.model, prompt,
